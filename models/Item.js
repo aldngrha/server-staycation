@@ -28,17 +28,15 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  categoryId: [
-    {
+  categoryId: {
       type: ObjectId,
       ref: "Category",
-    },
-  ],
+  },
   imageId: [
     {
       type: ObjectId,
-      ref: "Image",
-    },
+      ref: 'Image'
+    }
   ],
   featureId: [
     {

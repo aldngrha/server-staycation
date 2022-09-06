@@ -16,7 +16,7 @@ const bookingSchema = new mongoose.Schema({
     {
       _id: {
         type: ObjectId,
-        ref: Item,
+        ref: "Item",
         required: true,
       },
       price: {

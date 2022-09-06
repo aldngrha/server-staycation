@@ -12,7 +12,7 @@ const featureSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  featureUrl: {
+  imageUrl: {
     type: String,
     required: true,
   },

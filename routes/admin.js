@@ -4,9 +4,15 @@ const BookingController = require("../controllers/BookingController");
 const CategoryController = require("../controllers/CategoryController");
 const DashboardController = require("../controllers/DashboardController");
 const ItemController = require("../controllers/ItemController");
+const LoginController = require("../controllers/LoginController");
 const { uploadSingle, uploadMultiple } = require("../middlewares/multer");
+const auth = require("../middlewares/auth");
 
-router.get("/", DashboardController.viewDashboard);
+router.get("/signin", LoginController.viewSignin);
+router.post("/signin", LoginController.actionSignin);
+router.use(auth);
+router.get("/signout", LoginController.actionSignout);
+
 router.get("/dashboard", DashboardController.viewDashboard);
 
 // endpoint category

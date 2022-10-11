@@ -31,6 +31,7 @@ router.delete("/item/:id/delete", ItemController.deleteItem);
 
 //endpoint detail item
 router.get("/item/show-detail-item/:itemId", ItemController.viewDetailItem);
+//feature item
 router.post("/item/add/feature", uploadSingle, ItemController.addFeature);
 router.put("/item/update/feature", uploadSingle, ItemController.editFeature);
 router.delete(
@@ -38,6 +39,8 @@ router.delete(
   uploadSingle,
   ItemController.deleteFeature
 );
+//activity item
+router.post("/item/add/activity", uploadSingle, ItemController.addActivity);
 
 // endpoint booking
 router.get("/booking", uploadSingle, BookingController.viewBooking);

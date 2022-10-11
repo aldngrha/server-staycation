@@ -32,6 +32,7 @@ router.delete("/item/:id/delete", ItemController.deleteItem);
 //endpoint detail item
 router.get("/item/show-detail-item/:itemId", ItemController.viewDetailItem);
 router.post("/item/add/feature", uploadSingle, ItemController.addFeature);
+router.put("/item/update/feature", uploadSingle, ItemController.editFeatur);
 
 // endpoint booking
 router.get("/booking", uploadSingle, BookingController.viewBooking);

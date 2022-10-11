@@ -41,6 +41,7 @@ router.delete(
 );
 //activity item
 router.post("/item/add/activity", uploadSingle, ItemController.addActivity);
+router.put("/item/update/activity", uploadSingle, ItemController.editActivity);
 
 // endpoint booking
 router.get("/booking", uploadSingle, BookingController.viewBooking);

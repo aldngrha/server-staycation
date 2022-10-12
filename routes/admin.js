@@ -57,5 +57,7 @@ router.delete(
 // endpoint booking
 router.get("/booking", BookingController.viewBooking);
 router.get("/booking/:id", BookingController.showDetailBooking);
+router.put("/booking/:id/accepted", BookingController.actionAccepted);
+router.put("/booking/:id/rejected", BookingController.actionRejected);
 
 module.exports = router;

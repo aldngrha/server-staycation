@@ -38,6 +38,17 @@ module.exports = {
         }
       }
 
+      const testimonial = {
+        _id: "asd1293uasdads1",
+        imageUrl: "images/testimonial2.jpg",
+        name: "Happy Family",
+        rate: 4.55,
+        content:
+          "What a great trip with my family and I should try again next time soon ...",
+        familyName: "Angga",
+        familyOccupation: "Product Designer",
+      };
+
       const traveler = await Traveler.find();
       const treasure = await Treasure.find();
       const city = await Item.find();
@@ -50,6 +61,7 @@ module.exports = {
         },
         mostPicked,
         category,
+        testimonial,
       });
     } catch (error) {}
   },

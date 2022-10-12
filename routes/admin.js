@@ -55,6 +55,7 @@ router.delete(
 );
 
 // endpoint booking
-router.get("/booking", uploadSingle, BookingController.viewBooking);
+router.get("/booking", BookingController.viewBooking);
+router.get("/booking/:id", BookingController.showDetailBooking);
 
 module.exports = router;

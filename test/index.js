@@ -2,6 +2,7 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
 const app = require("../app");
+const fs = require("fs");
 
 chai.use(chaiHttp);
 
@@ -58,6 +59,70 @@ describe("API ENDPOINT TESTING", () => {
         expect(res.body.bank).to.have.an("array");
         expect(res.body).to.be.have.property("testimonial");
         expect(res.body.testimonial).to.have.an("object");
+        done();
+      });
+  });
+
+  it("GET Booking Page", (done) => {
+    const image = __dirname + "/hero.jpg";
+    const dataSample = {
+      image,
+      idItem: "5e96cbe292b97300fc902229",
+      duration: 2,
+      bookingStartDate: "9-4-2021",
+      bookingEndDate: "11-4-2021",
+      firstName: "poetri",
+      lastName: "namira",
+      email: "ptrinmra@gmail.com",
+      phoneNumber: "089812930121",
+      accountHolder: "98971821",
+      bankFrom: "BNI",
+    };
+    chai
+      .request(app)
+      .post("/api/booking-page")
+      .set("Content-Type", "application/x-www-form-urlencoded")
+      .field("idItem", dataSample.idItem)
+      .field("duration", dataSample.duration)
+      .field("bookingStartDate", dataSample.bookingStartDate)
+      .field("bookingEndDate", dataSample.bookingEndDate)
+      .field("firstName", dataSample.firstName)
+      .field("lastName", dataSample.lastName)
+      .field("email", dataSample.email)
+      .field("phoneNumber", dataSample.phoneNumber)
+      .field("accountHolder", dataSample.accountHolder)
+      .field("bankFrom", dataSample.bankFrom)
+      .attach("image", fs.readFileSync(dataSample.image), "hero.jpg")
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res).to.have.status(201);
+        expect(res.body).to.be.an("object");
+        expect(res.body).to.have.property("message");
+        expect(res.body.message).to.equal("Success Booking");
+        expect(res.body).to.have.property("booking");
+        expect(res.body.booking).to.have.all.keys(
+          "payments",
+          "_id",
+          "invoice",
+          "bookingStartDate",
+          "bookingEndDate",
+          "total",
+          "itemId",
+          "memberId",
+          "__v"
+        );
+        expect(res.body.booking.payments).to.have.all.keys(
+          "status",
+          "proofPayment",
+          "bankFrom",
+          "accountHolder"
+        );
+        expect(res.body.booking.itemId).to.have.all.keys(
+          "_id",
+          "title",
+          "price",
+          "duration"
+        );
         done();
       });
   });
